@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses List</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Expense List</h1>
+        <a href="/expense/form" class="btn btn-primary mb-3">Add New Expense</a>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <th:block th:each="expense : ${expenses}">
+                    <tr>
+                        <td th:text="${expense.id}"></td>
+                        <td th:text="${expense.description}"></td>
+                        <td th:text="${expense.amount}"></td>
+                        <td th:text="${expense.date}"></td>
+                        <td>
+                            <a th:href="@{/expense/edit/{id}(id=${expense.id})}" class="btn btn-warning">Edit</a>
+                            <a th:href="@{/expense/delete/{id}(id=${expense.id})}" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                        </td>
+                    </tr>
+                </th:block>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
